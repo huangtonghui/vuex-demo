@@ -1,44 +1,36 @@
-import Vue from "vue"
-import Vuex from "vuex"
+import vue from 'vue'
+import vuex from 'vuex'
+vue.use(vuex)
 
-Vue.use(Vuex);
-
-const store = new Vuex.Store({
-  state:{
-    todos:[],
+const store = new vuex.Store({
+  state: {
+    todos: []
   },
 
-  getters:{
-    todoCount(state){
-      return state.todos.length;
+  getters: {
+    getTodos (state) {
+      return state.todos
     }
   },
 
-  mutations:{
-    addTodo(state, todo){
-      if (todo.value != '') {
-        state.todos.push(todo);
-      }
+  mutations: {
+    addTodo (state, todo) {
+      state.todos.push(todo)
+    },
+    delTodo (state, index) {
+      state.todos.splice(index, 1)
+    }
+  },
+
+  actions: {
+    addTodo (state, todo) {
+      state.commit('addTodo', todo)
     },
 
-    delTodo(state, index){
-      state.todos.splice(index, 1);
+    delTodo (state, index) {
+      state.commit('delTodo', index)
     }
-  },
+  }
+})
 
-  actions:{
-    addTodo(state, todo){
-        if(todo.value != ""){
-            state.commit("addTodo", todo);
-        }
-    },
-
-    delTodo(state,index){
-        state.commit("delTodo", index);
-    }
-  },
-
-});
-
-export default store;
-
+export default store
