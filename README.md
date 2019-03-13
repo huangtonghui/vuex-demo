@@ -1,4 +1,4 @@
-# vue-demo
+# vue-router-vuex
 
 > A Vue.js project
 
